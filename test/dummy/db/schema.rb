@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_220359) do
+ActiveRecord::Schema.define(version: 2020_07_27_225318) do
 
   create_table "action_error_faults", force: :cascade do |t|
     t.integer "cause_id"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2020_07_27_220359) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cause_id"], name: "index_action_error_faults_on_cause_id"
     t.index ["klass", "backtrace", "message"], name: "index_action_error_faults_on_klass_and_backtrace_and_message"
+  end
+
+  create_table "action_error_instances", force: :cascade do |t|
+    t.integer "fault_id"
+    t.string "url"
+    t.text "headers"
+    t.text "parameters"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fault_id"], name: "index_action_error_instances_on_fault_id"
   end
 
   create_table "posts", force: :cascade do |t|

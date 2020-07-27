@@ -7,7 +7,7 @@ module ActionError
                            dependent: :restrict_with_error
     belongs_to :cause, optional: true, class_name: "ActionError::Fault",
                        dependent: :destroy
-    # has_many :fault_instances, dependent: :destroy
+    has_many :instances, dependent: :destroy
 
     serialize :backtrace, Array
     serialize :blamed_files, Array

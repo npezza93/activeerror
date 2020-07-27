@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fault: one
+  url: MyString
+  headers: MyText
+  parameters: MyText
+
+two:
+  fault: two
+  url: MyString
+  headers: MyText
+  parameters: MyText
