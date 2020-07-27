@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cause: one
+  backtrace: MyText
+  klass: MyString
+  message: MyText
+  controller: MyString
+  action: MyString
+  instances_count: 
+  blamed_files: MyText
+  options: MyText
+
+two:
+  cause: two
+  backtrace: MyText
+  klass: MyString
+  message: MyText
+  controller: MyString
+  action: MyString
+  instances_count: 
+  blamed_files: MyText
+  options: MyText

@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_213848) do
+ActiveRecord::Schema.define(version: 2020_07_27_220359) do
+
+  create_table "action_error_faults", force: :cascade do |t|
+    t.integer "cause_id"
+    t.text "backtrace"
+    t.string "klass"
+    t.text "message"
+    t.string "controller"
+    t.string "action"
+    t.integer "instances_count"
+    t.text "blamed_files"
+    t.text "options"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cause_id"], name: "index_action_error_faults_on_cause_id"
+    t.index ["klass", "backtrace", "message"], name: "index_action_error_faults_on_klass_and_backtrace_and_message"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
