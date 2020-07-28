@@ -1,0 +1,16 @@
+<header>
+  <h1>Instances of <%= @fault.title %></h1>
+  <p id="notice"><%= notice %><p>
+</header>
+
+<table>
+  <tbody>
+    <% @fault.fault_instances.each do |instance| %>
+      <tr>
+        <td><%= link_to instance.url, fault_instance_path(@fault, instance) %></td>
+        <td class="w-15"><%= instance.user_agent_display %></td>
+        <td class="w-15"><%= time_ago_in_words(instance.created_at).capitalize %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,6 +13,12 @@ module ActionError
     serialize :blamed_files, Array
     serialize :extras, Hash
 
+    scope :top_level, lambda {
+      left_joins(:parent_cause).where(
+        parent_causes_action_error_faults: { id: nil }
+      )
+    }
+
     def exception
       ExceptionMock.make(fault: self)
     end

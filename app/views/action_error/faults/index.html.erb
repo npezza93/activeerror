@@ -1,0 +1,17 @@
+<header>
+  <h1>Errors</h1>
+  <p id="notice"><%= notice %><p>
+</header>
+
+<table>
+  <tbody>
+    <% @faults.each do |fault| %>
+      <tr>
+        <td><%= link_to fault.title, fault %></td>
+        <td class="w-15"><%= time_ago_in_words(fault.created_at).capitalize %> ago</td>
+        <td class="w-15"><%= fault.occurrences %></td>
+        <td class="w-5"><%= link_to 'Resolve', fault, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
