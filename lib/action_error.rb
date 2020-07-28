@@ -3,5 +3,4 @@
 require "action_error/engine"
 
 module ActionError
-  # Your code goes here...
 end
