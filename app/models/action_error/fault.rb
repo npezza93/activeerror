@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "useragent"
+
 module ActionError
   class Fault < ApplicationRecord
     has_one :parent_cause, class_name: "ActionError::Fault",
@@ -11,7 +13,7 @@ module ActionError
 
     serialize :backtrace, Array
     serialize :blamed_files, Array
-    serialize :extras, Hash
+    serialize :options, Hash
 
     scope :top_level, lambda {
       left_joins(:parent_cause).where(
