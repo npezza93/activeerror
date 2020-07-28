@@ -21,7 +21,7 @@ module ActionError
     def fault
       @fault ||= Fault.find_or_create_by(**fault_attrs) do |fault|
         fault.message = exception.message
-        fault.extras = extras
+        fault.options = options
         fault.cause = cause
       end
     end
@@ -38,7 +38,7 @@ module ActionError
         action: params[:action] }
     end
 
-    def extras
+    def options
       case exception.class.to_s
       when "ActionView::Template::Error"
         { template: Marshal.dump(exception.instance_variable_get("@template")) }

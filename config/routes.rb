@@ -2,7 +2,9 @@
 
 ActionError::Engine.routes.draw do
   resources :faults, only: %i(index show destroy) do
-    resources :instances, only: :show
+    scope module: :faults do
+      resources :instances, only: :show
+    end
   end
   root "faults#index"
 end

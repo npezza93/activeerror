@@ -5,7 +5,7 @@
 
 <table>
   <tbody>
-    <% @fault.fault_instances.each do |instance| %>
+    <% @fault.instances.each do |instance| %>
       <tr>
         <td><%= link_to instance.url, fault_instance_path(@fault, instance) %></td>
         <td class="w-15"><%= instance.user_agent_display %></td>
