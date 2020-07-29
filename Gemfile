@@ -8,4 +8,5 @@ gemspec
 group :development, :test do
   gem "pry-rails"
   gem "sassc"
+  gem "simplecov"
 end

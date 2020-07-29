@@ -7,6 +7,7 @@ require "action_error/captor"
 require "action_error/renderer"
 require "action_error/middleware"
 require "action_error/engine"
+require "action_error/version"
 
 module ActionError
 end

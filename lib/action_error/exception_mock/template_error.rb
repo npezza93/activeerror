@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "action_view/template/error"
+
 module ActionError
   module ExceptionMock
     class TemplateError < ActionView::Template::Error
@@ -8,8 +10,8 @@ module ActionError
         set_backtrace(fault.backtrace)
         @message = fault.message
         @blamed_files = fault.blamed_files
-        @template = Marshal.load(fault.options[:template])
-        @cause = ExceptionMock.make(fault: fault.cause) if fault.cause.present?
+        @template = fault.template
+        @cause = ExceptionMock.make(fault: fault.cause)
       end
 
       def class

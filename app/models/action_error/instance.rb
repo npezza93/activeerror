@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "useragent"
+
 module ActionError
   class Instance < ApplicationRecord
     belongs_to :fault, counter_cache: true
@@ -7,13 +9,11 @@ module ActionError
     serialize :parameters, Hash
     serialize :headers, Hash
 
-    def self.capture(env, capture_instance:)
+    def self.capture(request, capture_instance:)
       return unless capture_instance
 
-      request = ActionDispatch::Request.new(env)
-      headers = env.slice(
-        *ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT"
-      )
+      headers = request.env.
+                slice(*ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT")
 
       create(headers: headers, parameters: request.filtered_parameters,
              url: request.url)

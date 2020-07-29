@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "useragent"
-
 module ActionError
   class Fault < ApplicationRecord
     has_one :parent_cause, class_name: "ActionError::Fault",
@@ -11,9 +9,10 @@ module ActionError
                        dependent: :destroy
     has_many :instances, dependent: :destroy
 
+    store :options, accessors: [:template], coder: YAML
+
     serialize :backtrace, Array
     serialize :blamed_files, Array
-    serialize :options, Hash
 
     scope :top_level, lambda {
       left_joins(:parent_cause).where(
@@ -26,15 +25,19 @@ module ActionError
     end
 
     def title
-      str = klass
-      str += " in #{controller_display}" if controller?
-      str += "##{action}" if action?
-
-      str
+      "#{klass}#{controller_display}#{action_display}"
     end
 
     def occurrences
       "#{instances_count} #{'instance'.pluralize(instances_count)}"
+    end
+
+    def template
+      Marshal.load(super) unless super.nil? # rubocop:disable Security/MarshalLoad
+    end
+
+    def template=(new_template)
+      super(Marshal.dump(new_template))
     end
 
     private
@@ -42,8 +45,13 @@ module ActionError
     def controller_display
       return unless controller?
 
-      "#{controller.camelize}Controller"
+      " in #{controller.camelize}Controller"
     end
 
+    def action_display
+      return unless action? && controller?
+
+      "##{action}"
+    end
   end
 end

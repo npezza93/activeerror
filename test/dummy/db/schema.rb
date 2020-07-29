@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_225318) do
+ActiveRecord::Schema.define(version: 2020_07_28_205512) do
 
   create_table "action_error_faults", force: :cascade do |t|
     t.integer "cause_id"

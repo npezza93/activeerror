@@ -9,7 +9,7 @@ module ActionError
     end
 
     def capture
-      fault.instances.capture(env, capture_instance: capture_instance)
+      fault.instances.capture(request, capture_instance: capture_instance)
 
       fault
     end
@@ -18,30 +18,32 @@ module ActionError
 
     attr_reader :exception, :env, :capture_instance
 
+    delegate :parameters, to: :request
+
     def fault
-      @fault ||= Fault.find_or_create_by(**fault_attrs) do |fault|
+      @fault ||= Fault.default_scoped.find_or_create_by(fault_attrs) do |fault|
         fault.message = exception.message
-        fault.options = options
         fault.cause = cause
+        options(fault)
       end
     end
 
-    def params
-      @params ||= ActionDispatch::Request.new(env).parameters
+    def request
+      @request ||= ActionDispatch::Request.new(env)
     end
 
     def fault_attrs
       { backtrace: exception.backtrace,
         klass: exception.class.to_s,
         blamed_files: exception.blamed_files,
-        controller: params[:controller],
-        action: params[:action] }
+        controller: parameters[:controller],
+        action: parameters[:action] }
     end
 
-    def options
+    def options(fault)
       case exception.class.to_s
       when "ActionView::Template::Error"
-        { template: Marshal.dump(exception.instance_variable_get("@template")) }
+        fault.template = exception.instance_variable_get("@template")
       end
     end
 

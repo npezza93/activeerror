@@ -3,12 +3,23 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
+require "simplecov"
+SimpleCov.start do
+  enable_coverage :branch
+  track_files "{app,lib}/**/*.rb"
+  add_filter "/test/"
+  add_group "Controllers", "app/controllers"
+  add_group "Models", "app/models"
+  add_group "Lib", "lib"
+end
+
 require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths =
   [File.expand_path("../test/dummy/db/migrate", __dir__)]
 ActiveRecord::Migrator.migrations_paths <<
   File.expand_path("../db/migrate", __dir__)
 require "rails/test_help"
+Rails.application.eager_load!
 
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 

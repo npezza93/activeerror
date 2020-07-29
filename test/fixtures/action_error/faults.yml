@@ -1,23 +1,36 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  cause: one
-  backtrace: MyText
-  klass: MyString
+  cause: two
+  backtrace: <%= ["file"].to_yaml.inspect %>
+  klass: NoMethodError
   message: MyText
-  controller: MyString
-  action: MyString
-  instances_count: 
-  blamed_files: MyText
-  options: MyText
+  controller: faults
+  action: show
+  blamed_files: <%= ["file"].to_yaml.inspect %>
 
 two:
-  cause: two
-  backtrace: MyText
-  klass: MyString
+  backtrace: <%= ["file"].to_yaml.inspect %>
+  klass: StandardError
   message: MyText
-  controller: MyString
-  action: MyString
-  instances_count: 
-  blamed_files: MyText
-  options: MyText
+  controller: faults
+  action: index
+  blamed_files: <%= ["file"].to_yaml.inspect %>
+
+template:
+  cause: template_cause
+  backtrace: <%= ["file"].to_yaml.inspect %>
+  klass: "ActionView::Template::Error"
+  message: "undefined method `fault_instances' for #<ActionError::Fault:0x00007ff4445ec190>"
+  controller: "action_error/faults"
+  action: "show"
+  blamed_files: <%= [].to_yaml.inspect %>
+  options: "--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\ntemplate: !binary |-\n  BAhVOhlBY3Rpb25WaWV3OjpUZW1wbGF0ZVsObzooQWN0aW9uVmlldzo6VGVtcGxhdGU6OlNvdXJjZXM6OkZpbGUGOg5AZmlsZW5hbWVJIlMvVXNlcnMvbmljay9Eb2N1bWVudHMvYWN0aW9uX2Vycm9yL2FwcC92aWV3cy9hY3Rpb25fZXJyb3IvZmF1bHRzL3Nob3cuaHRtbC5lcmIGOgZFVEAIbzooQWN0aW9uVmlldzo6VGVtcGxhdGU6OkhhbmRsZXJzOjpFUkIAVFsASSIdYWN0aW9uX2Vycm9yL2ZhdWx0cy9zaG93BjsIVEl1OglUaW1lDYIbHoC8CLQQBzoLb2Zmc2V0af7AxzoJem9uZUkiCEVEVAY7CEY6CWh0bWww\n"
+
+template_cause:
+  backtrace: <%= ["file"].to_yaml.inspect %>
+  klass: StandardError
+  message: MyText
+  controller: faults
+  action: index
+  blamed_files: <%= ["file"].to_yaml.inspect %>

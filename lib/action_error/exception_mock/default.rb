@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/dependencies"
+
 module ActionError
   module ExceptionMock
     class Default
@@ -10,7 +12,7 @@ module ActionError
         @backtrace = fault.backtrace
         @message = fault.message
         @blamed_files = fault.blamed_files
-        @cause = ExceptionMock.make(fault: fault.cause) if fault.cause.present?
+        @cause = ExceptionMock.make(fault: fault.cause)
       end
 
       def class
