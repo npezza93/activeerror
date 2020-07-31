@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ActionError
+  Captive = Struct.new(:fault, :instance)
+
   class Captor
     def initialize(exception:, env:, capture_instance: true)
       @exception = exception
@@ -9,9 +11,14 @@ module ActionError
     end
 
     def capture
-      fault.instances.capture(request, capture_instance: capture_instance)
+      Captive.new(
+        fault,
+        fault.instances.capture(request, capture_instance: capture_instance)
+      )
+    end
 
-      fault
+    def display?
+      ActiveRecord::Type::Boolean.new.cast(parameters["action_error.display"])
     end
 
     private
@@ -51,7 +58,7 @@ module ActionError
       return if exception.cause.blank?
 
       self.class.new(exception: exception.cause, env: env,
-                     capture_instance: false).capture
+                     capture_instance: false).capture.fault
     end
   end
 end

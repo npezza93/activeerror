@@ -5,7 +5,7 @@ module ActionError
     before_action :set_fault, only: %i(show destroy)
 
     def index
-      @faults = ActionError::Fault.top_level
+      @faults = Fault.top_level
     end
 
     def show
@@ -20,7 +20,7 @@ module ActionError
     private
 
     def set_fault
-      @fault = ActionError::Fault.find(params[:id])
+      @fault = Fault.find(params[:id])
     end
   end
 end

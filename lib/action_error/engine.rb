@@ -5,7 +5,7 @@ module ActionError
     isolate_namespace ActionError
 
     initializer "actionerror.middleware" do |app|
-      app.config.middleware.use ActionError::Middleware
+      app.config.middleware.use Middleware
     end
   end
 end

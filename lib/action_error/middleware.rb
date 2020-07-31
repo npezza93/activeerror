@@ -9,9 +9,12 @@ module ActionError
     def call(env)
       @app.call(env)
     rescue Exception => e # rubocop:disable Lint/RescueException
-      Captor.new(exception: e, env: env).capture
-      # ErrorRenderer.new(exception: e, env: env).render
-      raise e
+      captor = Captor.new(exception: e, env: env)
+      captive = captor.capture
+
+      raise e unless captor.display?
+
+      Renderer.new(instance: captive.instance).render
     end
   end
 end

@@ -16,8 +16,8 @@ module ActionError
     end
 
     test "#destroy" do
-      assert_difference -> { ActionError::Fault.count }, -2 do
-        assert_difference -> { ActionError::Instance.count }, -1 do
+      assert_difference -> { Fault.count }, -2 do
+        assert_difference -> { Instance.count }, -1 do
           delete action_error.fault_path(action_error_faults(:template))
         end
       end
