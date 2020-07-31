@@ -36,9 +36,8 @@ module ActionError
     end
 
     def request_env
-      ENV.to_h.merge(
+      ENV.to_h.merge(headers).merge(
         "action_dispatch.request.parameters" => parameters,
-        **headers
       )
     end
   end
