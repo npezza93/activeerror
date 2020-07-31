@@ -11,16 +11,13 @@ Gem::Specification.new do |spec|
   spec.email       = ["pezza@hey.com"]
   spec.homepage    = "https://github.com/npezza93/actionerror"
   spec.summary     = "Rails exception logger"
-  spec.license     = "Prosperity Public License"
+  spec.license     = "MIT"
 
   spec.files =
     Dir["{app,config,db,lib}/**/*", "LICENSE.md", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.2"
+  spec.add_dependency "rails", ">= 5.1"
   spec.add_dependency "useragent"
 
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "rubocop-performance"
-  spec.add_development_dependency "rubocop-rails"
   spec.add_development_dependency "sqlite3"
 end
