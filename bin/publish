@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "pathname"
+require "fileutils"
+require_relative "../lib/action_error/version"
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path("..", __dir__)
+MASTER_CHECK = <<~MASTER_CHECK
+  if [ $(git symbolic-ref --short -q HEAD) != 'master' ];
+    then exit 1;
+  fi
+MASTER_CHECK
+VERSION_TYPES = %w(major minor patch).freeze
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+abort("\n== Version Type incorrect ==") unless VERSION_TYPES.include?(ARGV[0])
+
+abort("\n== Not on master") unless system(MASTER_CHECK)
+
+current_version = ActionError::VERSION.split(".").map(&:to_i)
+
+case ARGV[0]
+when "major"
+  current_version[0] += 1
+  current_version[1] = 0
+  current_version[2] = 0
+when "minor"
+  current_version[1] += 1
+  current_version[2] = 0
+when "patch"
+  current_version[2] += 1
+end
+
+joined_version = current_version.join(".")
+
+FileUtils.chdir APP_ROOT do
+  contents = <<~FILE
+    # frozen_string_literal: true
+
+    module ActionError
+      VERSION = Gem::Version.new("#{joined_version}")
+    end
+  FILE
+
+  puts "== Updating version to #{joined_version} =="
+  File.write("lib/action_error/version.rb", contents)
+
+  system! "git add lib/action_error/version.rb"
+
+  puts "== Committing updated files =="
+  system! "git commit -m 'Version bump to #{joined_version}'"
+  system! "git push"
+
+  puts "== Building gem =="
+  system! "bundle exec rake build"
+
+  puts "== Publishing gem =="
+  built_gem_path = "pkg/redi_search-#{joined_version}.gem"
+  github_host = "https://rubygems.pkg.github.com/npezza93"
+
+  system! "gem push --key github --host #{github_host} #{built_gem_path}"
+end
