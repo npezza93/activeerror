@@ -3,14 +3,16 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
-require "simplecov"
-SimpleCov.start do
-  enable_coverage :branch
-  track_files "{app,lib}/**/*.rb"
-  add_filter "/test/"
-  add_group "Controllers", "app/controllers"
-  add_group "Models", "app/models"
-  add_group "Lib", "lib"
+if ENV["COV"]
+  require "simplecov"
+  SimpleCov.start do
+    enable_coverage :branch
+    track_files "{app,lib}/**/*.rb"
+    add_filter "/test/"
+    add_group "Controllers", "app/controllers"
+    add_group "Models", "app/models"
+    add_group "Lib", "lib"
+  end
 end
 
 require_relative "../test/dummy/config/environment"

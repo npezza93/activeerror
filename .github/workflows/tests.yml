@@ -19,6 +19,6 @@ jobs:
       run: |
         sudo apt-get install libsqlite3-dev -y
         gem install bundler --no-document
-        BUNDLE_GEMFILE=${{ matrix.gemfile }} bundle install
+        BUNDLE_GEMFILE=${{ matrix.gemfile }} bundle install --with=test
     - name: Run tests
       run: BUNDLE_GEMFILE=${{ matrix.gemfile }} bundle exec rails test
