@@ -9,13 +9,23 @@
     font-size: 13px;
     line-height: 18px; }
 
-  a {
+  .button-as-link {
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    line-height: 18px; }
+
+  a, .button-as-link {
     color: #000; }
 
-  a:visited {
+  a:visited, .button-as-link:visited {
     color: #666; }
 
-  a:hover {
+  a:hover, .button-as-link:hover {
     color: #fff;
     background-color: #000; }
 

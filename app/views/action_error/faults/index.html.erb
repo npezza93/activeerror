@@ -10,7 +10,7 @@
         <td><%= link_to fault.title, fault %></td>
         <td class="w-15"><%= time_ago_in_words(fault.created_at).capitalize %> ago</td>
         <td class="w-15"><%= fault.occurrences %></td>
-        <td class="w-5"><%= link_to 'Resolve', fault, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="w-5"><%= button_to 'Resolve', fault, method: :delete, form: { onSubmit: "return confirm('Are you sure?')" }, class: "button-as-link" %></td>
       </tr>
     <% end %>
   </tbody>
