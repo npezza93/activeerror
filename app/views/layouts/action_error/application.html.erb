@@ -5,7 +5,88 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    "action_error/application", media: "all" %>
+  <style>
+    .actionerror body {
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+    }
+
+    .actionerror body, .actionerror p, .actionerror ol, .actionerror ul, .actionerror td {
+      font-family: verdana, arial, helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .actionerror .button-as-link {
+      border: none;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      font-size: 15px;
+      margin: 0;
+      padding: 0;
+      line-height: 18px;
+    }
+    .actionerror a, .actionerror .button-as-link {
+      color: #000;
+    }
+
+    .actionerror a:visited, .actionerror .button-as-link:visited {
+      color: #666;
+    }
+
+    .actionerror a:hover, .actionerror .button-as-link:hover {
+      color: #fff;
+      background-color: #000;
+    }
+
+    .actionerror th {
+      padding-bottom: 5px;
+    }
+
+    .actionerror td {
+      padding: 0 5px 7px;
+      font-size: 15px;
+    }
+
+    .actionerror #notice {
+      color: #d3f0b7;
+    }
+
+    .actionerror header {
+      color: #f0f0f0;
+      background: #c52f24;
+      padding: 0.5em 1.5em;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 0.83em;
+    }
+
+    .actionerror h1 {
+      flex: 1;
+      margin: 0.2em 0;
+      line-height: 1.1em;
+      font-size: 2em;
+    }
+
+    .actionerror table {
+      padding: 0 1.5em;
+      width: 100%;
+    }
+
+    .actionerror table tr td:first-of-type {
+      padding-left: 0;
+    }
+
+    .actionerror .w-5 {
+      width: 5%;
+    }
+
+    .actionerror .w-15 {
+      width: 15%;
+    }
+  </style>
 </head>
 <body>
 
