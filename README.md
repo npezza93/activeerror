@@ -21,6 +21,12 @@ Or install it yourself as:
 $ gem install actionerror
 ```
 
+And then install migrations:
+```bash
+bin/rails action_error:install:migrations
+bin/rails rails db:migrate
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
