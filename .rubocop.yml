@@ -2,6 +2,7 @@ require:
   - rubocop-performance
   - rubocop-rails
 AllCops:
+  NewCops: enable
   Exclude:
     - vendor/**/*
     - Gemfile.lock
@@ -13,7 +14,7 @@ AllCops:
     - test/dummy/bin/**/*
     - gemfiles/**/*
     - bin/**/*
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.1
 
 # Department Bundler
 Bundler/DuplicatedGem:
@@ -615,12 +616,8 @@ Lint/UselessAssignment:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars
   Enabled: true
 
-Lint/UselessComparison:
+Lint/BinaryOperatorWithIdenticalOperands:
   Description: Checks for comparison of something with itself.
-  Enabled: true
-
-Lint/UselessElseWithoutRescue:
-  Description: Checks for useless `else` in `begin..end` without `rescue`.
   Enabled: true
 
 Lint/ReturnInVoidContext:
@@ -755,7 +752,7 @@ Naming/VariableName:
 
 Naming/VariableNumber:
   Description: Use the configured style when numbering variables.
-  Enabled: true
+  Enabled: false
 
 Naming/MemoizedInstanceVariableName:
   Enabled: true
@@ -1061,7 +1058,7 @@ Style/EmptyElse:
 
 Style/EmptyCaseCondition:
   Description: Avoid empty condition in case statements.
-  Enabled: true
+  Enabled: false
 
 Style/EmptyLiteral:
   Description: Prefer literals to Array.new/Hash.new/String.new.
@@ -1198,9 +1195,6 @@ Style/MethodCalledOnDoEndBlock:
 Style/MethodDefParentheses:
   Description: Checks if the method definitions have or don't have parentheses.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#method-parens
-  Enabled: true
-
-Style/MethodMissingSuper:
   Enabled: true
 
 Style/MissingRespondToMissing:
@@ -1633,10 +1627,26 @@ Style/RedundantRegexpCharacterClass:
   Enabled: true
 Style/RedundantRegexpEscape:
   Enabled: true
-Style/RedundantFetchBlock:
-  Enabled: true
+Lint/MissingSuper:
+  Enabled: false
+
+
 
 Lint/DuplicateElsifCondition:
+  Enabled: true
+Lint/DuplicateRescueException:
+  Enabled: true
+Lint/EmptyConditionalBody:
+  Enabled: true
+Lint/FloatComparison:
+  Enabled: true
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+Lint/SelfAssignment:
+  Enabled: true
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+Lint/UnreachableLoop:
   Enabled: true
 Style/AccessorGrouping:
   Enabled: true
@@ -1646,13 +1656,25 @@ Style/BisectedAttrAccessor:
   Enabled: true
 Style/CaseLikeIf:
   Enabled: true
-Style/HashAsLastArrayItem:
+Style/ExplicitBlockArgument:
+  Enabled: false
+Style/GlobalStdStream:
   Enabled: true
+Style/HashAsLastArrayItem:
+  Enabled: false
 Style/HashLikeCase:
+  Enabled: true
+Style/OptionalBooleanParameter:
   Enabled: true
 Style/RedundantAssignment:
   Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: true
 Style/RedundantFileExtensionInRequire:
+  Enabled: true
+Style/SingleArgumentDig:
+  Enabled: true
+Style/StringConcatenation:
   Enabled: true
 Performance/AncestorsInclude:
   Enabled: true
@@ -1670,14 +1692,12 @@ Performance/Squeeze:
   Enabled: true
 Performance/StringInclude:
   Enabled: true
-
-
 Rails/ActiveRecordCallbacksOrder:
   Enabled: true
 Rails/FindById:
   Enabled: true
 Rails/Inquiry:
-  Enabled: true
+  Enabled: false
 Rails/MailerName:
   Enabled: true
 Rails/MatchRoute:
@@ -1696,3 +1716,27 @@ Rails/ShortI18n:
   Enabled: true
 Rails/WhereExists:
   Enabled: true
+Rails/SkipsModelValidations:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+Rails/InverseOf:
+  Enabled: false
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+Rails/OutputSafety:
+  Enabled: false
+Naming/BlockForwarding:
+  Enabled: false
+Rails/ReversibleMigration:
+  Enabled: false
+Rails/I18nLocaleTexts:
+  Enabled: false
+Rails/MigrationClassName:
+  Enabled: false
+Rails/BulkChangeTable:
+  Enabled: false
+Rails/DotSeparatedKeys:
+  Enabled: false
+Rails/AttributeDefaultBlockValue:
+  Enabled: false

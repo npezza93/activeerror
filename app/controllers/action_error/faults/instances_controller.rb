@@ -4,7 +4,7 @@ module ActionError
   module Faults
     class InstancesController < ApplicationController
       def show
-        render html: Renderer.new(instance: instance).body
+        render html: Renderer.new(instance:).body
       end
 
       private

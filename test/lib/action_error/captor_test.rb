@@ -7,7 +7,7 @@ module ActionError
     test "captures exception" do
       request = ActionDispatch::TestRequest.create
       exception = NoMethodError.new("method doesnt exist")
-      captor = Captor.new(exception: exception, env: request.env)
+      captor = Captor.new(exception:, env: request.env)
 
       assert_difference -> { Fault.count } do
         assert_difference -> { Instance.count } do
@@ -29,7 +29,7 @@ module ActionError
         exception = ActionView::Template::Error.new(template)
       end
 
-      captor = Captor.new(exception: exception, env: request.env)
+      captor = Captor.new(exception:, env: request.env)
 
       assert_difference -> { Fault.count }, 2 do
         assert_difference -> { Instance.count } do

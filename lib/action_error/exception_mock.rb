@@ -4,10 +4,10 @@ module ActionError
   module ExceptionMock
     def self.make(fault:)
       case fault&.klass
-      when "ActionView::Template::Error" then TemplateError.new(fault: fault)
+      when "ActionView::Template::Error" then TemplateError.new(fault:)
       when nil then nil
       else
-        Default.new(fault: fault)
+        Default.new(fault:)
       end
     end
   end

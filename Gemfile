@@ -7,6 +7,7 @@ gemspec
 
 group :development, :test do
   gem "simplecov"
+  gem "sqlite3"
 
   gem "rubocop"
   gem "rubocop-performance"

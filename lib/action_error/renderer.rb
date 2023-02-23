@@ -52,8 +52,8 @@ module ActionError
       ActionDispatch::DebugView.new(
         request: instance.request, exception_wrapper: wrapper,
         exception: wrapper.exception, show_source_idx: source_to_show_id,
-        trace_to_show: trace_to_show, line_number: line_number,
-        source_extracts: source_extracts, traces: traces, file: wrapper.file,
+        trace_to_show:, line_number:,
+        source_extracts:, traces:, file: wrapper.file,
       )
     end
   end

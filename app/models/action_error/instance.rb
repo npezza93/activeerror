@@ -15,7 +15,7 @@ module ActionError
       headers = request.env.
                 slice(*ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT")
 
-      create(headers: headers, parameters: request.filtered_parameters,
+      create(headers:, parameters: request.filtered_parameters,
              url: request.url)
     end
 

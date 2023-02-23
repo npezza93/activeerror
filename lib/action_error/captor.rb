@@ -13,7 +13,7 @@ module ActionError
     def capture
       Captive.new(
         fault,
-        fault.instances.capture(request, capture_instance: capture_instance)
+        fault.instances.capture(request, capture_instance:)
       )
     end
 
@@ -50,14 +50,14 @@ module ActionError
     def options(fault)
       case exception.class.to_s
       when "ActionView::Template::Error"
-        fault.template = exception.instance_variable_get("@template")
+        fault.template = exception.instance_variable_get(:@template)
       end
     end
 
     def cause
       return if exception.cause.blank?
 
-      self.class.new(exception: exception.cause, env: env,
+      self.class.new(exception: exception.cause, env:,
                      capture_instance: false).capture.fault
     end
   end
