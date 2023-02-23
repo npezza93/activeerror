@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-appraise "rails-52" do
-  gem "rails", "< 6.0", ">= 5.2"
+appraise "rails-70" do
+  gem "rails", "< 7.1", ">= 7.0"
 end
 
-appraise "rails-51" do
-  gem "rails", "< 5.2", ">= 5.1"
+appraise "rails-61" do
+  gem "rails", "< 7.0", ">= 6.1"
+end
+
+appraise "rails-60" do
+  gem "rails", "< 6.1", ">= 6.0"
 end

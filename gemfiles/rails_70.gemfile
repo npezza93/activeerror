@@ -2,11 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "rails", "< 6.0", ">= 5.2"
+gem "rails", "< 7.1", ">= 7.0"
 
 group :development, :test do
-  gem "pry-rails"
-  gem "sassc"
   gem "simplecov"
   gem "rubocop"
   gem "rubocop-performance"
