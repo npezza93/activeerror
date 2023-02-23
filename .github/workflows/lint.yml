@@ -1,16 +1,21 @@
 name: lint
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
+    name: Linting
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.7.x
+        ruby-version: 3.2.x
     - name: Install dependencies
       run: |
         sudo apt-get install libsqlite3-dev

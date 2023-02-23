@@ -1,21 +1,29 @@
 name: tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  unit:
+  build:
     runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
-        ruby: [ '3.1.x', '3.2.x' ]
-        # gemfile: [ 'Gemfile', 'gemfiles/rails_51.gemfile', 'gemfiles/rails_52.gemfile' ]
-        gemfile: [ 'Gemfile' ]
+        ruby:
+          - '3.1.x'
+          - '3.2.x'
+        gemfile:
+          - 'Gemfile'
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up Ruby ${{ matrix.ruby }}
-      uses: actions/setup-ruby@v1
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
     - name: Install dependencies
       run: |
         sudo apt-get install libsqlite3-dev -y
