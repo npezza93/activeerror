@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Linting
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.2
     - name: Install dependencies
       run: |
         sudo apt-get install libsqlite3-dev
-        gem install bundler --no-document
         bundle install
     - name: Run tests
       run: bundle exec rubocop --config=./.rubocop.yml --parallel

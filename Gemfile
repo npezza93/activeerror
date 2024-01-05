@@ -13,5 +13,6 @@ group :development, :test do
   gem "rubocop-performance"
   gem "rubocop-rails"
 
-  gem "appraisal"
+  gem "propshaft"
+  gem "puma"
 end

@@ -1,4 +1,4 @@
-# ActionError
+# ActiveError
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "actionerror"
+gem "active_error"
 ```
 
 And then execute:
@@ -18,12 +18,12 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install actionerror
+$ gem install active_error
 ```
 
 And then install migrations:
 ```bash
-bin/rails action_error:install:migrations
+bin/rails active_error:install:migrations
 bin/rails rails db:migrate
 ```
 
@@ -40,7 +40,7 @@ push git commits and tags, and push the `.gem` file to GitHub.
 ## Contributing
 
 Bug reports and pull requests are welcome on
-[GitHub](https://github.com/npezza93/actionerror). This project is intended to
+[GitHub](https://github.com/npezza93/active_error). This project is intended to
 be a safe, welcoming space for collaboration, and contributors are expected to
 adhere to the [Contributor Covenant](http://contributor-covenant.org) code of
 conduct.
@@ -49,7 +49,7 @@ conduct.
 
 Everyone interacting in the RediSearch project’s codebases, issue trackers, chat
 rooms and mailing lists is expected to follow the [code of
-conduct](https://github.com/npezza93/actionerror/blob/master/CODE_OF_CONDUCT.md).
+conduct](https://github.com/npezza93/active_error/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
