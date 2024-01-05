@@ -13,6 +13,8 @@ module ActiveError
                     yaml: { unsafe_load: true }
 
     serialize :backtrace, type: Array, coder: YAML
+    serialize :backtrace_locations, type: Array, coder: YAML, 
+                                    yaml: { unsafe_load: true }
     serialize :blamed_files, type: Array, coder: YAML
 
     scope :top_level, lambda {

@@ -14,6 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_022155) do
   create_table "active_error_faults", force: :cascade do |t|
     t.integer "cause_id"
     t.text "backtrace"
+    t.text "backtrace_locations"
     t.string "klass"
     t.text "message"
     t.string "controller"

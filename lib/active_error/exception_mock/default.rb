@@ -10,6 +10,7 @@ module ActiveError
       def initialize(fault:)
         @klass = fault.klass
         @backtrace = fault.backtrace
+        @backtrace_locations = fault.backtrace_locations
         @message = fault.message
         # @blamed_files = fault.blamed_files
         @cause = ExceptionMock.make(fault: fault.cause)
@@ -19,7 +20,8 @@ module ActiveError
         klass.constantize
       end
 
-      attr_reader :backtrace, :message, :cause
+      attr_reader :backtrace, :backtrace_locations, :message, :cause, 
+                  :line_number
 
       private
 

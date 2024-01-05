@@ -5,6 +5,7 @@ class CreateActiveErrorFaults < ActiveRecord::Migration[6.0]
     create_table :active_error_faults do |t|
       t.belongs_to :cause
       t.text :backtrace
+      t.text :backtrace_locations
       t.string :klass
       t.text :message
       t.string :controller
