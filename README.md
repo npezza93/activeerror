@@ -1,14 +1,11 @@
 # ActiveError
 Short description and motivation.
 
-## Usage
-How to use my plugin.
-
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "active_error"
+gem "activeerror"
 ```
 
 And then execute:
@@ -18,14 +15,16 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install active_error
+$ gem install activeerror
 ```
 
 And then install migrations:
 ```bash
-bin/rails active_error:install:migrations
+bin/rails active_error:install
 bin/rails rails db:migrate
 ```
+
+This also mounts a route n your routes file to view the errors.
 
 ## Development
 
@@ -44,12 +43,6 @@ Bug reports and pull requests are welcome on
 be a safe, welcoming space for collaboration, and contributors are expected to
 adhere to the [Contributor Covenant](http://contributor-covenant.org) code of
 conduct.
-
-## Code of Conduct
-
-Everyone interacting in the RediSearch project’s codebases, issue trackers, chat
-rooms and mailing lists is expected to follow the [code of
-conduct](https://github.com/npezza93/active_error/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
