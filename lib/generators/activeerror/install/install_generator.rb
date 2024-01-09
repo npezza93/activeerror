@@ -6,6 +6,6 @@ class ActiveError::InstallGenerator < Rails::Generators::Base
   end
 
   def create_migrations
-    rails_command "railties:install:migrations FROM=active_error", inline: true
+    rails_command "active_error:install:migrations", inline: true
   end
 end
