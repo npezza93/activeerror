@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails/generators/base"
+
 class ActiveError::InstallGenerator < Rails::Generators::Base
   def add_route
     route "mount ActiveError::Engine => \"/active_error\""
