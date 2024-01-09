@@ -4,7 +4,7 @@
 
 module ActiveError
   module ExceptionMock
-    class Default < Exception
+    class Default < StandardError
       # include ActiveSupport::Dependencies::Blamable
 
       def initialize(fault:)
