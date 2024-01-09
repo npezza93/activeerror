@@ -43,7 +43,7 @@ FileUtils.chdir APP_ROOT do
     # frozen_string_literal: true
 
     module ActiveError
-      VERSION = Gem::Version.new("#{joined_version}")
+      VERSION = "#{joined_version}"
     end
   FILE
 
