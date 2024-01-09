@@ -45,7 +45,7 @@ bin/rails active_error:install
 bin/rails rails db:migrate
 ```
 
-This also mounts a route n your routes file to view the errors.
+This also mounts a route n your routes file to view the errors at `/errors`.
 
 ## Development
 

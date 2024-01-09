@@ -2,7 +2,7 @@
 
 class ActiveError::InstallGenerator < Rails::Generators::Base
   def add_route
-    route "mount ActiveError::Engine => \"/active_error\""
+    route "mount ActiveError::Engine => \"/errors\""
   end
 
   def create_migrations
