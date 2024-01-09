@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails/generators/base"
+require "rails/generators"
 
 class ActiveError::InstallGenerator < Rails::Generators::Base
   def add_route
