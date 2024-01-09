@@ -16,7 +16,7 @@ with is the one baked into Rails that we use everyday in development. So with
 ActiveError, when an error gets raised it's captured and stored in the
 database (we attempt to group the same error together as Instances to reduce
 noise) and then we recreate the error and display it using the built in debug
-view from Rails. Once you've resolved the error you can click "Resolve" with
+view from Rails. Once you've resolved the error you can click "Resolve" which
 will destroy the record.
 
 ![screenshot 1](https://github.com/npezza93/active_error/blob/main/.github/screenshot1.png)
