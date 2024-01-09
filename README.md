@@ -1,5 +1,6 @@
 # ActiveError
-Short description and motivation.
+![screenshot 1](https://github.com/npezza93/active_error/blob/main/.github/screenshot1.png)
+![screenshot 2](https://github.com/npezza93/active_error/blob/main/.github/screenshot2.png)
 
 ## Installation
 Add this line to your application's Gemfile:
