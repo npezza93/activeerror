@@ -13,15 +13,11 @@ module ActiveError
                     yaml: { unsafe_load: true }
 
     serialize :backtrace, type: Array, coder: YAML
-    serialize :backtrace_locations, type: Array, coder: YAML, 
+    serialize :backtrace_locations, type: Array, coder: YAML,
                                     yaml: { unsafe_load: true }
     serialize :blamed_files, type: Array, coder: YAML
 
-    scope :top_level, lambda {
-      left_joins(:parent_cause).where(
-        parent_causes_active_error_faults: { id: nil }
-      )
-    }
+    scope :top_level, -> { where.missing(:parent_cause) }
 
     def exception
       ExceptionMock.make(fault: self)
