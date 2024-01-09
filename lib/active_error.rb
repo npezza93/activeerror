@@ -3,7 +3,6 @@
 require "active_error/exception_mock/default"
 require "active_error/exception_mock/template_error"
 require "active_error/exception_mock"
-require "active_error/error_subscriber"
 require "active_error/captor"
 require "active_error/renderer"
 require "active_error/engine"

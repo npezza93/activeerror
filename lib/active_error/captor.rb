@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module ActiveError
-  Captive = Struct.new(:fault, :instance)
   BacktraceLocation = Struct.new(:absolute_path, :base_label, :to_s, :label, # rubocop:disable Lint/StructNewOverride
                                  :lineno, :path) do
     def inspect = to_s
@@ -18,10 +17,8 @@ module ActiveError
     end
 
     def capture
-      Captive.new(
-        fault,
-        fault.instances.capture(request, capture_instance:)
-      )
+      create_instance if capture_instance?
+      fault
     end
 
     private
@@ -34,30 +31,29 @@ module ActiveError
       @fault ||= Fault.default_scoped.find_or_create_by(fault_attrs) do |fault|
         fault.message = exception.message
         fault.cause = cause
-        options(fault)
+        fault.backtrace_locations = backtrace_locations
+        fault.template = template if template?
       end
     end
 
     def fault_attrs
-      { backtrace: exception.backtrace,
-        backtrace_locations:,
-        klass: exception.class.to_s,
-        controller: parameters[:controller],
-        action: parameters[:action] }
+      { backtrace: exception.backtrace, klass: exception.class.to_s,
+        controller: parameters[:controller], action: parameters[:action] }
     end
 
-    def options(fault)
-      case exception.class.to_s
-      when "ActionView::Template::Error"
-        fault.template = exception.instance_variable_get(:@template)
-      end
+    def template?
+      exception.class.is_a?(ActionView::Template::Error)
+    end
+
+    def template
+      exception.instance_variable_get(:@template)
     end
 
     def cause
       return if exception.cause.blank?
 
       self.class.new(exception: exception.cause, request:,
-                     capture_instance: false).capture.fault
+                     capture_instance: false).capture
     end
 
     def backtrace_locations
@@ -66,6 +62,18 @@ module ActiveError
                               location.to_s, location.label, location.lineno,
                               location.path)
       end
+    end
+
+    def capture_instance?
+      capture_instance
+    end
+
+    def create_instance
+      headers = request.env.
+                slice(*ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT")
+
+      fault.instances.create(headers:, parameters: request.filtered_parameters,
+                             url: request.url)
     end
   end
 end

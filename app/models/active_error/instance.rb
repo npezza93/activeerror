@@ -9,16 +9,6 @@ module ActiveError
     serialize :parameters, coder: JSON
     serialize :headers, coder: JSON
 
-    def self.capture(request, capture_instance:)
-      return unless capture_instance
-
-      headers = request.env.
-                slice(*ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT")
-
-      create(headers:, parameters: request.filtered_parameters,
-             url: request.url)
-    end
-
     delegate :browser, :platform, :version, to: :user_agent
 
     def user_agent_display

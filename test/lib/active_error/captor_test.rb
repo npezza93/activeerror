@@ -12,9 +12,7 @@ module ActiveError
       assert_difference -> { Fault.count } do
         assert_difference -> { Instance.count } do
           captive = captor.capture
-          assert_instance_of Captive, captive
-          assert_instance_of Instance, captive.instance
-          assert_instance_of Fault, captive.fault
+          assert_instance_of Fault, captive
         end
       end
     end
@@ -34,10 +32,8 @@ module ActiveError
       assert_difference -> { Fault.count }, 2 do
         assert_difference -> { Instance.count } do
           captive = captor.capture
-          assert_instance_of Captive, captive
-          assert_instance_of Instance, captive.instance
-          assert_instance_of Fault, captive.fault
-          assert_instance_of Fault, captive.fault.cause
+          assert_instance_of Fault, captive
+          assert_instance_of Fault, captive.cause
         end
       end
     end
