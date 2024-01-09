@@ -5,7 +5,7 @@ $:.push File.expand_path("lib", __dir__)
 require "active_error/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "active_error"
+  spec.name        = "activeerror"
   spec.version     = ActiveError::VERSION
   spec.authors     = ["Nick Pezza"]
   spec.email       = ["pezza@hey.com"]
