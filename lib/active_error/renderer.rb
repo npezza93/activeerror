@@ -7,10 +7,6 @@ module ActiveError
       @exception = instance.fault.exception
     end
 
-    def render
-      [wrapper.status_code, headers, [body]]
-    end
-
     def body
       @body ||= template.render(template: file, layout: "rescues/layout")
     end
@@ -26,10 +22,6 @@ module ActiveError
       Rails.backtrace_cleaner
     end
 
-    def format
-      "text/html"
-    end
-
     def wrapper
       @wrapper ||=
         ActionDispatch::ExceptionWrapper.new(backtrace_cleaner, exception)
@@ -37,15 +29,6 @@ module ActiveError
 
     def file
       "rescues/#{wrapper.rescue_template}"
-    end
-
-    def headers
-      charset = ActionDispatch::Response.default_charset
-
-      {
-        "Content-Type" => "#{format}; charset=#{charset}",
-        "Content-Length" => body.bytesize.to_s
-      }
     end
 
     def template

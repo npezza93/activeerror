@@ -20,7 +20,7 @@ module ActiveError
         klass.constantize
       end
 
-      attr_reader :backtrace, :backtrace_locations, :message, :cause, 
+      attr_reader :backtrace, :backtrace_locations, :message, :cause,
                   :line_number
 
       private

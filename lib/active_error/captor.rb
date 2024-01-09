@@ -6,21 +6,14 @@ module ActiveError
                                  :lineno, :path) do
     def inspect = to_s
 
-    if defined?(ErrorHighlight) &&
-        Gem::Version.new(ErrorHighlight::VERSION) >= Gem::Version.new("0.4.0")
-      def spot(exception)
-        ErrorHighlight.spot(exception, backtrace_location: self)
-      end
-    else
-      def spot(exception)
-      end
+    def spot(exception)
     end
   end
 
   class Captor
-    def initialize(exception:, env:, capture_instance: true)
+    def initialize(exception:, request:, capture_instance: true)
       @exception = exception
-      @env = env
+      @request = request
       @capture_instance = capture_instance
     end
 
@@ -31,13 +24,9 @@ module ActiveError
       )
     end
 
-    def display?
-      ActiveRecord::Type::Boolean.new.cast(parameters["active_error.display"])
-    end
-
     private
 
-    attr_reader :exception, :env, :capture_instance
+    attr_reader :exception, :request, :capture_instance
 
     delegate :parameters, to: :request
 
@@ -47,10 +36,6 @@ module ActiveError
         fault.cause = cause
         options(fault)
       end
-    end
-
-    def request
-      @request ||= ActionDispatch::Request.new(env)
     end
 
     def fault_attrs
@@ -71,7 +56,7 @@ module ActiveError
     def cause
       return if exception.cause.blank?
 
-      self.class.new(exception: exception.cause, env:,
+      self.class.new(exception: exception.cause, request:,
                      capture_instance: false).capture.fault
     end
 

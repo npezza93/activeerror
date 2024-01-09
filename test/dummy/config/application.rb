@@ -2,7 +2,14 @@
 
 require_relative "boot"
 
-require "rails/all"
+%w(
+  active_record/railtie
+  action_controller/railtie
+  action_view/railtie
+  rails/test_unit/railtie
+).each do |railtie|
+  require railtie
+end
 
 Bundler.require(*Rails.groups)
 require "active_error"

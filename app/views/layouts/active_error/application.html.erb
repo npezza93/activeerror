@@ -7,13 +7,22 @@
 
     <style>
       .active_error body {
-        background-color: #fff;
+        background-color: #FAFAFA;
         color: #333;
-        margin: 0;
+        color-scheme: light dark;
+        supported-color-schemes: light dark;
+        margin: 0px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .active_error body {
+          background-color: #222;
+          color: #ECECEC;
+        }
       }
 
       .active_error body, .active_error p, .active_error ol, .active_error ul, .active_error td {
-        font-family: verdana, arial, helvetica, sans-serif;
+        font-family: helvetica, verdana, arial, sans-serif;
         font-size: 13px;
         line-height: 18px;
       }
@@ -28,18 +37,15 @@
         padding: 0;
         line-height: 18px;
       }
-      .active_error a, .active_error .button-as-link {
-        color: #000;
-      }
 
-      .active_error a:visited, .active_error .button-as-link:visited {
+      .active_error a, .active_error .button-as-link { color: #980905; }
+      .active_error a:visited, .active_error .button-as-link:visited { color: #666; }
+      .active_error a.trace-frames {
         color: #666;
+        overflow-wrap: break-word;
       }
-
-      .active_error a:hover, .active_error .button-as-link:hover {
-        color: #fff;
-        background-color: #000;
-      }
+      .active_error a:hover, .active_error .button-as-link:hover, .active_error a.trace-frames.selected { color: #C00; }
+      .active_error a.summary:hover { color: #FFF; }
 
       .active_error th {
         padding-bottom: 5px;
@@ -47,7 +53,6 @@
 
       .active_error td {
         padding: 0 5px 7px;
-        font-size: 15px;
       }
 
       .active_error #notice {
@@ -56,7 +61,7 @@
 
       .active_error header {
         color: #f0f0f0;
-        background: #c52f24;
+        background: #C00;
         padding: 0.5em 1.5em;
         display: flex;
         flex-direction: row;
@@ -65,6 +70,7 @@
 
       .active_error h1 {
         flex: 1;
+        overflow-wrap: break-word;
         margin: 0.2em 0;
         line-height: 1.1em;
         font-size: 2em;

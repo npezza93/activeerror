@@ -1,5 +1,5 @@
 <header>
-  <h1>Instances of <%= @fault.title %></h1>
+  <h1>Instances of <%= @fault.title %> (Fault #<%= @fault.id %>)</h1>
   <p id="notice"><%= notice %><p>
 </header>
 
@@ -7,7 +7,7 @@
   <tbody>
     <% @fault.instances.each do |instance| %>
       <tr>
-        <td>#<%= @fault.id %>-<%= instance.id %></td>
+        <td>#<%= instance.id %></td>
         <td><%= link_to instance.url, fault_instance_path(@fault, instance) %></td>
         <td class="w-15"><%= instance.user_agent_display %></td>
         <td class="w-15"><%= time_ago_in_words(instance.created_at).capitalize %> ago</td>
