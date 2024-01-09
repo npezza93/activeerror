@@ -2,8 +2,8 @@
 
 One of the fundemental tools needed to take your Rails app to production is a
 way to track errors that are triggered. Unfortunately, theres no free, easy,
-open source way to track them for small or medium apps. Honeybadger and Sentry are great,
-but they are only free for a single user and are closed source. With Sentry
+open source way to track them for small or medium apps. Honeybadger, Sentry, 
+and AppSignal are great, but they are are closed source. With Sentry
 looking at using your data as training
 data([link](https://blog.sentry.io/ai-privacy-and-terms-of-service-updates/?original_referrer=https%3A%2F%2Fsentry.io%2F))
 there should be an easy open source alternative where you control the data.
