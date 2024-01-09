@@ -3,6 +3,8 @@
 module ActiveError
   class ErrorSubscriber
     def report(exception, context:, **_opts)
+      return if Rails.env.local?
+
       Captor.new(exception:, request: context[:active_error_request]).capture
     end
   end
