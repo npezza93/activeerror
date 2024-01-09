@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version     = ActiveError::VERSION
   spec.authors     = ["Nick Pezza"]
   spec.email       = ["pezza@hey.com"]
-  spec.homepage    = "https://github.com/npezza93/active_error"
+  spec.homepage    = "https://github.com/npezza93/activeerror"
   spec.summary     = "Rails exception logger"
   spec.license     = "MIT"
 
