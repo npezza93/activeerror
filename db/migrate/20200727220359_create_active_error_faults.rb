@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateActiveErrorFaults < ActiveRecord::Migration[6.0]
+class CreateActiveErrorFaults < ActiveRecord::Migration[7.1]
   def change
     create_table :active_error_faults do |t|
       t.belongs_to :cause
