@@ -9,7 +9,7 @@ module ActiveError
     def call(env)
       @app.call(env)
     rescue Exception => exception # rubocop:disable Lint/RescueException, Naming/RescuedExceptionsVariableName
-      Captor.new(exception:, request: env.request).capture
+      Captor.new(exception:, request: ActionDispatch::Request.new(env)).capture
 
       raise
     end
