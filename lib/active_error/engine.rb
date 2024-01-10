@@ -6,7 +6,7 @@ module ActiveError
 
     isolate_namespace ActiveError
 
-    initializer "active_error.middleware" do |_app|
+    initializer "active_error.middleware" do |app|
       app.config.middleware.use ActiveError::Middleware
 
       ::ActiveJob::Base.class_eval do |base|
