@@ -25,7 +25,7 @@ module ActiveError
 
     attr_reader :exception, :request, :capture_instance
 
-    delegate :parameters, to: :request
+    delegate :parameters, to: :request, allow_nil: true
 
     def fault
       @fault ||= Fault.default_scoped.find_or_create_by(fault_attrs) do |fault|
@@ -38,7 +38,8 @@ module ActiveError
 
     def fault_attrs
       { backtrace: exception.backtrace, klass: exception.class.to_s,
-        controller: parameters[:controller], action: parameters[:action] }
+        controller: parameters.to_h[:controller],
+        action: parameters.to_h[:action] }
     end
 
     def template?
@@ -69,10 +70,10 @@ module ActiveError
     end
 
     def create_instance
-      headers = request.env.
+      headers = request&.env.to_h.
                 slice(*ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT")
 
-      fault.instances.create(headers:, parameters: request.filtered_parameters,
+      fault.instances.create(headers:, parameters: request&.filtered_parameters,
                              url: request.url)
     end
   end
