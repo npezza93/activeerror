@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateActiveErrorFaults < ActiveRecord::Migration[7.1]
-  def change
+  def change # rubocop:disable Metrics/AbcSize
     create_table :active_error_faults do |t|
       t.belongs_to :cause
       t.binary :backtrace, lmit: 512.megabytes
