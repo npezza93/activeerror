@@ -2,14 +2,15 @@
 
 One of the fundemental tools needed to take your Rails app to production is a
 way to track errors that are triggered. Unfortunately, theres no free, easy,
-open source way to track them for small or medium apps. Honeybadger, Sentry,
+open source way to track them for small or medium apps. Honeybadger, Sentry, 
 and AppSignal are great, but they are are closed source. With Sentry
 looking at using your data as training
 data([link](https://blog.sentry.io/ai-privacy-and-terms-of-service-updates/?original_referrer=https%3A%2F%2Fsentry.io%2F))
 there should be an easy open source alternative where you control the data.
 
-ActiveError hooks into the middleware of Rails.
-These third party error loggers also try to make their own fancy
+ActiveError hooks into the [error reporting
+api](https://guides.rubyonrails.org/error_reporting.html) baked directly into
+Rails. These third party error loggers also try to make their own fancy
 backtrace and debugging view. But the one Rails developers are most comfortable
 with is the one baked into Rails that we use everyday in development. So with
 ActiveError, when an error gets raised it's captured and stored in the
