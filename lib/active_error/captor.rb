@@ -38,8 +38,7 @@ module ActiveError
 
     def fault_attrs
       { backtrace: exception.backtrace, klass: exception.class.to_s,
-        controller: parameters.to_h[:controller],
-        action: parameters.to_h[:action] }
+        controller:, action: controller_action }
     end
 
     def template?
@@ -75,6 +74,16 @@ module ActiveError
 
       fault.instances.create(headers:, parameters: request&.filtered_parameters,
                              url: request&.url)
+    end
+
+    def controller
+      parameters.to_h[:controller].presence ||
+        request.try(:controller_class).to_s.presence
+    end
+
+    def controller_action
+      parameters.to_h[:action].presence ||
+        request.try(:controller_instance).try(:action_name).presence
     end
   end
 end

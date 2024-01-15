@@ -6,6 +6,8 @@ require_relative "boot"
   active_record/railtie
   action_controller/railtie
   action_view/railtie
+  active_support/railtie
+  active_job/railtie
   rails/test_unit/railtie
 ).each do |railtie|
   require railtie

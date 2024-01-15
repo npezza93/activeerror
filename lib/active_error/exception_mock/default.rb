@@ -4,6 +4,12 @@
 
 module ActiveError
   module ExceptionMock
+    class Klass < SimpleDelegator
+      def name
+        self
+      end
+    end
+
     class Default < StandardError
       # include ActiveSupport::Dependencies::Blamable
 
@@ -17,7 +23,7 @@ module ActiveError
       end
 
       def class
-        klass.constantize
+        Klass.new(klass)
       end
 
       attr_reader :backtrace, :backtrace_locations, :message, :cause,

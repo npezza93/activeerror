@@ -14,7 +14,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_022155) do
   create_table "active_error_faults", force: :cascade do |t|
     t.integer "cause_id"
     t.text "backtrace"
-    t.text "backtrace_locations"
     t.string "klass"
     t.text "message"
     t.string "controller"
@@ -24,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_022155) do
     t.text "options"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "backtrace_locations"
     t.index ["cause_id"], name: "index_active_error_faults_on_cause_id"
     t.index ["klass", "backtrace", "message"], name: "index_active_error_faults_on_klass_and_backtrace_and_message"
   end
