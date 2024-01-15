@@ -15,4 +15,6 @@ group :development, :test do
 
   gem "propshaft"
   gem "puma"
+
+  gem "solid_queue"
 end
