@@ -10,4 +10,5 @@ require "active_error/railtie"
 require "active_error/version"
 
 module ActiveError
+  mattr_accessor :ignored
 end
