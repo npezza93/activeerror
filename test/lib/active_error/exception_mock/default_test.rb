@@ -11,7 +11,7 @@ module ActiveError
       end
 
       test "#class" do
-        assert_equal NoMethodError, @mock.class
+        assert_equal "NoMethodError", @mock.class
       end
 
       test "#backtrace" do
@@ -19,7 +19,7 @@ module ActiveError
       end
 
       test "#cause" do
-        assert_equal @fault.cause.klass.constantize, @mock.cause.class
+        assert_equal @fault.cause.klass, @mock.cause.class
         assert_instance_of Default, @mock.cause
       end
     end
