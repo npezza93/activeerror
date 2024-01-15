@@ -47,6 +47,16 @@ bin/rails rails db:migrate
 
 This also mounts a route n your routes file to view the errors at `/errors`.
 
+
+##### Config
+
+You can supply the string version of an error class to `ignored` to ignore
+classes of errors.
+
+```ruby
+ActiveError.ignored = ["NoMethodError"]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
