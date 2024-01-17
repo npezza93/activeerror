@@ -19,8 +19,8 @@ noise) and then we recreate the error and display it using the built in debug
 view from Rails. Once you've resolved the error you can click "Resolve" which
 will destroy the record.
 
-![screenshot 1](https://github.com/npezza93/active_error/blob/main/.github/screenshot1.png)
-![screenshot 2](https://github.com/npezza93/active_error/blob/main/.github/screenshot2.png)
+![screenshot 1](https://github.com/npezza93/activeerror/blob/main/.github/screenshot1.png)
+![screenshot 2](https://github.com/npezza93/activeerror/blob/main/.github/screenshot2.png)
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -45,7 +45,7 @@ bin/rails active_error:install
 bin/rails rails db:migrate
 ```
 
-This also mounts a route n your routes file to view the errors at `/errors`.
+This also mounts a route in your routes file to view the errors at `/errors`.
 
 
 ##### Config
@@ -70,7 +70,7 @@ push git commits and tags, and push the `.gem` file to GitHub.
 ## Contributing
 
 Bug reports and pull requests are welcome on
-[GitHub](https://github.com/npezza93/active_error). This project is intended to
+[GitHub](https://github.com/npezza93/activeerror). This project is intended to
 be a safe, welcoming space for collaboration, and contributors are expected to
 adhere to the [Contributor Covenant](http://contributor-covenant.org) code of
 conduct.
