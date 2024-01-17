@@ -41,7 +41,7 @@ $ gem install activeerror
 
 And then install migrations:
 ```bash
-bin/rails active_error:install
+bin/rails generate active_error:install
 bin/rails rails db:migrate
 ```
 
