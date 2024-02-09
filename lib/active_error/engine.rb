@@ -7,7 +7,9 @@ module ActiveError
   class Engine < ::Rails::Engine
     isolate_namespace ActiveError
 
-    initializer "active_error.middleware" do |_app|
+    initializer "active_error.middleware" do |app|
+      app.config.middleware.use ActiveError::Middleware
+
       ActionController::Base.before_action do
         Rails.error.set_context(active_error_request: request)
       end
