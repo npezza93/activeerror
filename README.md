@@ -42,7 +42,7 @@ $ gem install activeerror
 And then install migrations:
 ```bash
 bin/rails generate active_error:install
-bin/rails rails db:migrate
+bin/rails db:migrate
 ```
 
 This also mounts a route in your routes file to view the errors at `/errors`.
