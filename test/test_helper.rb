@@ -26,7 +26,7 @@ Rails.application.eager_load!
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
 # Load fixtures from the engine
-if ActiveSupport::TestCase.respond_to?(:fixture_path=)
+if ActiveSupport::TestCase.respond_to?(:fixture_paths=)
   ActiveSupport::TestCase.fixture_paths =
     [File.expand_path("fixtures", __dir__)]
   ActionDispatch::IntegrationTest.fixture_paths =
