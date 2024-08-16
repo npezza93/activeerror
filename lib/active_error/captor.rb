@@ -42,7 +42,8 @@ module ActiveError
     end
 
     def template?
-      exception.class.is_a?(ActionView::Template::Error)
+      exception.is_a?(ActionView::Template::Error) ||
+        exception.class.is_a?(ActionView::Template::Error)
     end
 
     def template

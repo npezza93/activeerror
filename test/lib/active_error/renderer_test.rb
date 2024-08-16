@@ -19,5 +19,11 @@ module ActiveError
 
       assert_equal body.squish.match(/<body>.*<\/header>/).to_s, expected
     end
+
+    test "doesnt raise undefined method identitifer for nil" do
+      instance = active_error_instances(:missing_attribute_template)
+
+      assert_nothing_raised { Renderer.new(instance:).body }
+    end
   end
 end

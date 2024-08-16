@@ -17,3 +17,15 @@ template:
   url: "http://localhost:3000/active_error/faults/4/instances/2"
   parameters: <%= { "controller"=>"active_error/faults/instances", "action"=>"show", "fault_id"=>"4", "id"=>"2" }.to_json.inspect %>
   headers: <%= {"GATEWAY_INTERFACE"=>"CGI/1.1", "REMOTE_HOST"=>"::1", "REMOTE_ADDR"=>"::1", "SERVER_NAME"=>"localhost", "SERVER_PROTOCOL"=>"HTTP/1.1", "ORIGINAL_SCRIPT_NAME"=>"", "HTTP_ACCEPT"=> "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "HTTP_ACCEPT_ENCODING"=>"gzip, deflate", "HTTP_ACCEPT_LANGUAGE"=>"en-us", "HTTP_VERSION"=>"HTTP/1.1", "HTTP_USER_AGENT"=> "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15"}.to_json.inspect %>
+
+missing_attribute_template:
+  fault: missing_attribute_template
+  url: "https://ntrnl.workingnotworking.com/search/opportunities"
+  headers: <%= {"GATEWAY_INTERFACE"=>"CGI/1.2", "REMOTE_ADDR"=>"172.17.0.2", "SERVER_NAME"=>"ntrnl.workingnotworking.com", "SERVER_PROTOCOL"=>"HTTP/1.1", "ORIGINAL_SCRIPT_NAME"=>"", "HTTP_ACCEPT"=>"text/html, application/xhtml+xml", "HTTP_ACCEPT_ENCODING"=>"gzip, deflate, br, zstd", "HTTP_ACCEPT_LANGUAGE"=>"en,nl;q=0.9,ja;q=0.8,zh-TW;q=0.7,zh;q=0.6", "HTTP_X_FORWARDED_FOR"=>"172.31.23.55", "HTTP_VERSION"=>"HTTP/1.1", "HTTP_X_FORWARDED_HOST"=>"ntrnl.workingnotworking.com", "HTTP_USER_AGENT"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"}.to_json.inspect %>
+  parameters: <%= {"controller"=>"search/opportunities", "action"=>"index"}.to_json.inspect %>
+
+missing_attribute_cause:
+  fault: missing_attribute_cause
+  url: "https://ntrnl.workingnotworking.com/search/opportunities"
+  headers: <%= {"GATEWAY_INTERFACE"=>"CGI/1.2", "REMOTE_ADDR"=>"172.17.0.2", "SERVER_NAME"=>"ntrnl.workingnotworking.com", "SERVER_PROTOCOL"=>"HTTP/1.1", "ORIGINAL_SCRIPT_NAME"=>"", "HTTP_ACCEPT"=>"text/html, application/xhtml+xml", "HTTP_ACCEPT_ENCODING"=>"gzip, deflate, br, zstd", "HTTP_ACCEPT_LANGUAGE"=>"en,nl;q=0.9,ja;q=0.8,zh-TW;q=0.7,zh;q=0.6", "HTTP_X_FORWARDED_FOR"=>"172.31.23.55", "HTTP_VERSION"=>"HTTP/1.1", "HTTP_X_FORWARDED_HOST"=>"ntrnl.workingnotworking.com", "HTTP_USER_AGENT"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"}.to_json.inspect %>
+  parameters: <%= {"controller"=>"search/opportunities", "action"=>"index"}.to_json.inspect %>

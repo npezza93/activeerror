@@ -34,3 +34,23 @@ template_cause:
   controller: faults
   action: index
   blamed_files: <%= ["file"].to_yaml.inspect %>
+
+missing_attribute_cause:
+  backtrace: <%= ["file"].to_yaml.inspect %>
+  klass: "ActiveModel::MissingAttributeError"
+  message: "missing attribute 'details' for Opportunity"
+  controller: "Search::OpportunitiesController"
+  action: "index"
+  instances_count: 2
+  blamed_files: <%= ["file"].to_yaml.inspect %>
+
+missing_attribute_template:
+  cause: missing_attribute_cause
+  backtrace: <%= ["file"].to_yaml.inspect %>
+  klass: "ActionView::Template::Error"
+  message: "missing attribute 'details' for Opportunity"
+  controller: "Search::OpportunitiesController"
+  action: "index"
+  instances_count: 2
+  blamed_files: <%= ["file"].to_yaml.inspect %>
+  options: <%= {"template"=> "\u0004\bU:\u0019ActionView::Template[\ro:(ActionView::Template::Sources::File\u0006:\u000E@filenameI\"T/Users/nick/Documents/activeerror/test/dummy/app/views/make_errors/new.html.erb\u0006:\u0006ET@\bo:(ActionView::Template::Handlers::ERB\u0000T[\u0000I\"\u0014make_errors/new\u0006;\bT:\thtml0"}.to_json.inspect %>
