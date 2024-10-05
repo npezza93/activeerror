@@ -3,16 +3,36 @@
   <p id="notice"><%= notice %><p>
 </header>
 
-<table>
-  <tbody>
-    <% @faults.each do |fault| %>
-      <tr>
-        <td>#<%= fault.id %></td>
-        <td><%= link_to fault.title, fault %></td>
-        <td class="w-15"><%= time_ago_in_words(fault.created_at).capitalize %> ago</td>
-        <td class="w-15"><%= fault.occurrences %></td>
-        <td class="w-5"><%= button_to 'Resolve', fault, method: :delete, form: { onSubmit: "return confirm('Are you sure?')" }, class: "button-as-link" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="table">
+  <% @faults.each do |fault| %>
+    <div class="tr">
+      <div class="td chevron">▶</div>
+      <div class="td">#<%= fault.id %></div>
+      <div class="td location">
+        <%= link_to fault.title, fault_instance_path(fault, fault.instances.last) %>
+        <span><%= fault.location %></span>
+      </div>
+      <div class="td"><%= time_ago_in_words(fault.created_at).capitalize %> ago</div>
+      <div class="td"><%= fault.occurrences %></div>
+      <div class="td"><%= button_to 'Resolve', fault, method: :delete, form: { onSubmit: "return confirm('Are you sure?')" }, class: "button-as-link" %></div>
+    <div class="all-cols hidden">
+      <% fault.instances.each do |instance| %>
+        <div>
+          <div><%= link_to instance.url, fault_instance_path(fault, instance) %></div>
+          <div><%= instance.user_agent_display %></div>
+          <div><%= time_ago_in_words(instance.created_at).capitalize %> ago</div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  document.querySelectorAll(".chevron").forEach((el) => {
+    el.addEventListener("click", (event) => {
+      event.target.parentElement.querySelector(".all-cols").classList.toggle("hidden")
+      event.target.classList.toggle("rotate")
+    })
+  })
+</script>

@@ -9,12 +9,6 @@ module ActiveError
       assert_response :success
     end
 
-    test "#show" do
-      get active_error.fault_path(active_error_faults(:one))
-
-      assert_response :success
-    end
-
     test "#destroy" do
       assert_difference -> { Fault.count }, -2 do
         assert_difference -> { Instance.count }, -1 do

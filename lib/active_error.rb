@@ -12,4 +12,25 @@ require "active_error/version"
 
 module ActiveError
   mattr_accessor :ignored
+
+  IGNORE_DEFAULT = [
+    "AbstractController::ActionNotFound",
+    "ActionController::BadRequest",
+    "ActionController::InvalidAuthenticityToken",
+    "ActionController::InvalidCrossOriginRequest",
+    "ActionController::MethodNotAllowed",
+    "ActionController::NotImplemented",
+    "ActionController::ParameterMissing",
+    "ActionController::RoutingError",
+    "ActionController::UnknownAction",
+    "ActionController::UnknownFormat",
+    "ActionDispatch::Http::MimeNegotiation::InvalidType",
+    "ActionController::UnknownHttpMethod",
+    "ActionDispatch::Http::Parameters::ParseError",
+    "ActiveRecord::RecordNotFound"
+  ].freeze
+
+  def self.ignored_classes
+    ignored.to_a + IGNORE_DEFAULT
+  end
 end

@@ -2,12 +2,14 @@
 
 module ActiveError
   class Fault < ApplicationRecord
+    self.filter_attributes = [:backtrace]
+
     has_one :parent_cause, class_name: "ActiveError::Fault",
                            foreign_key: :cause_id, inverse_of: :cause,
                            dependent: :restrict_with_error
     belongs_to :cause, optional: true, class_name: "ActiveError::Fault",
                        dependent: :destroy
-    has_many :instances, dependent: :destroy
+    has_many :instances, dependent: :delete_all
 
     store :options, accessors: [:template], coder: YAML,
                     yaml: { unsafe_load: true }
@@ -37,6 +39,10 @@ module ActiveError
 
     def template=(new_template)
       super(Marshal.dump(new_template))
+    end
+
+    def location
+      Rails.backtrace_cleaner.clean(backtrace).first
     end
 
     private

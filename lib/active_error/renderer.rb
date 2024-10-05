@@ -8,7 +8,11 @@ module ActiveError
     end
 
     def body
-      @body ||= template.render(template: file, layout: "rescues/layout")
+      @body ||= begin
+        set_lookup_context
+
+        template.render(template: file, layout: "active_error/rescue")
+      end
     end
 
     private
@@ -28,10 +32,27 @@ module ActiveError
     end
 
     def template
-      ActionDispatch::DebugView.
+      @template ||=
+        ActionDispatch::DebugView.
         new(request: instance.request, exception_wrapper:, traces:,
             exception: exception_wrapper.exception, trace_to_show:,
             source_extracts:, show_source_idx: source_to_show_id,)
+    end
+
+    def set_lookup_context
+      template.define_singleton_method :lookup_context= do |new_context|
+        @lookup_context = new_context
+        @view_renderer = ActionView::Renderer.new @lookup_context
+      end
+
+      template.lookup_context = new_lookup_context
+    end
+
+    def new_lookup_context
+      ActionView::LookupContext.new([
+        *ActionDispatch::DebugView::RESCUES_TEMPLATE_PATHS.dup,
+        ActiveError::Engine.root.join("app/views/layouts").to_s
+      ])
     end
   end
 end

@@ -2,13 +2,10 @@
 
 module ActiveError
   class FaultsController < ApplicationController
-    before_action :set_fault, only: %i(show destroy)
+    before_action :set_fault, only: %i(destroy)
 
     def index
-      @faults = Fault.top_level
-    end
-
-    def show
+      @faults = Fault.top_level.includes(:instances)
     end
 
     def destroy
