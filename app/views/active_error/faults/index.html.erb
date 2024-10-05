@@ -10,7 +10,10 @@
       <div class="td">#<%= fault.id %></div>
       <div class="td location">
         <%= link_to fault.title, fault_instance_path(fault, fault.instances.last) %>
-        <span><%= fault.location %></span>
+
+        <% if fault.location.present? %>
+          <span><%= fault.location %></span>
+        <% end %>
       </div>
       <div class="td"><%= time_ago_in_words(fault.created_at).capitalize %> ago</div>
       <div class="td"><%= fault.occurrences %></div>
@@ -19,8 +22,8 @@
       <% fault.instances.each do |instance| %>
         <div>
           <div><%= link_to instance.url, fault_instance_path(fault, instance) %></div>
-          <div><%= instance.user_agent_display %></div>
           <div><%= time_ago_in_words(instance.created_at).capitalize %> ago</div>
+          <div><%= instance.user_agent_display %></div>
         </div>
       <% end %>
     </div>

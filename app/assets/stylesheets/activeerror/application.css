@@ -88,7 +88,7 @@
   .tr {
     border-bottom: 3px solid rgba(38,27,35,0.1);
     display: grid;
-    grid-template-columns: 10px 50px 1fr 215px 150px 180px;
+    grid-template-columns: 10px 70px 1fr 215px 150px 180px;
     align-items: center;
 
     .all-cols {
@@ -98,9 +98,12 @@
       &> div {
         display: grid;
         grid-template-columns: 1fr 215px 300px;
-        margin-left: 92px;
+        margin-left: 110px;
         flex-direction: row;
 
+        &> div {
+          padding-right: 5px;
+        }
         div {
           margin: 3px 0px;
 
