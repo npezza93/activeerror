@@ -1,8 +1,8 @@
 # ActiveError
 
 One of the fundemental tools needed to take your Rails app to production is a
-way to track errors that are triggered. Unfortunately, there aren't mant free,
-easy, open source way to track them for small or medium apps. Honeybadger, Sentry,
+way to track errors that are triggered. Unfortunately, there aren't many free,
+easy, open source ways to track them for small or medium apps. Honeybadger, Sentry,
 and AppSignal are great, but they are are closed source. With Sentry
 looking at using your data as training
 data([link](https://blog.sentry.io/ai-privacy-and-terms-of-service-updates/?original_referrer=https%3A%2F%2Fsentry.io%2F))
@@ -47,7 +47,7 @@ bin/rails active_error:install
 bin/rails db:migrate
 ```
 
-This will mount a route in your routes file to view the insights at `/errors`.
+This will mount a route in your routes file to view the errors at `/errors`.
 
 ##### Config
 
