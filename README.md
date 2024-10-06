@@ -39,22 +39,21 @@ Or install it yourself as:
 $ gem install activeerror
 ```
 
-And then install migrations:
+Run the installer and migrate:
 ```bash
-bin/rails generate active_error:install
+bin/rails active_error:install
 bin/rails db:migrate
 ```
 
-This also mounts a route in your routes file to view the errors at `/errors`.
-
+This will mount a route in your routes file to view the insights at `/errors`.
 
 ##### Config
 
-You can supply the string version of an error class to `ignored` to ignore
-classes of errors.
+You can supply a list of the string version of an error class to `ignored` to
+ignore classes of errors.
 
 ```ruby
-ActiveError.ignored = ["NoMethodError"]
+config.active_error.ignored = ["NoMethodError"]
 ```
 
 ## Development

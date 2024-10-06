@@ -10,7 +10,7 @@ require "active_error/engine"
 require "active_error/version"
 
 module ActiveError
-  mattr_accessor :ignored
+  mattr_accessor :ignored, :enabled
 
   IGNORE_DEFAULT = [
     "AbstractController::ActionNotFound",
@@ -29,7 +29,17 @@ module ActiveError
     "ActiveRecord::RecordNotFound"
   ].freeze
 
-  def self.ignored_classes
-    ignored.to_a + IGNORE_DEFAULT
+  class << self
+    def ignored_classes
+      ignored.to_a + IGNORE_DEFAULT
+    end
+
+    def enabled?
+      if enabled.nil?
+        !Rails.env.local?
+      else
+        enabled.present?
+      end
+    end
   end
 end

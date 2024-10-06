@@ -7,8 +7,16 @@ module ActiveError
   class Engine < ::Rails::Engine
     isolate_namespace ActiveError
 
+    config.active_error = ActiveSupport::OrderedOptions.new
+
     initializer "active_error.error_reporter" do |_app|
       Rails.error.subscribe(::ActiveError::ErrorSubscriber.new)
+    end
+
+    initializer "active_error.config" do
+      config.active_error.each do |name, value|
+        ActiveError.public_send(:"#{name}=", value)
+      end
     end
 
     initializer "active_error.context" do
