@@ -1,12 +1,14 @@
 # ActiveError
 
 One of the fundemental tools needed to take your Rails app to production is a
-way to track errors that are triggered. Unfortunately, theres no free, easy,
-open source way to track them for small or medium apps. Honeybadger, Sentry,
+way to track errors that are triggered. Unfortunately, there aren't mant free,
+easy, open source way to track them for small or medium apps. Honeybadger, Sentry,
 and AppSignal are great, but they are are closed source. With Sentry
 looking at using your data as training
 data([link](https://blog.sentry.io/ai-privacy-and-terms-of-service-updates/?original_referrer=https%3A%2F%2Fsentry.io%2F))
 there should be an easy open source alternative where you control the data.
+With Rails 8's ethos of No PAAS, there should be a way for new apps to start out
+with a basic error reporter and not be forced to pay a third party for one.
 
 ActiveError hooks into the [error reporting
 api](https://guides.rubyonrails.org/error_reporting.html) baked directly into
@@ -16,8 +18,8 @@ with is the one baked into Rails that we use everyday in development. So with
 ActiveError, when an error gets raised it's captured and stored in the
 database (we attempt to group the same error together as Instances to reduce
 noise) and then we recreate the error and display it using the built in debug
-view from Rails. Once you've resolved the error you can click "Resolve" which
-will destroy the record.
+view from Rails (with a few font and styling tweaks). Once you've resolved the
+error you can click "Resolve" which will destroy the record.
 
 ![screenshot 1](https://github.com/npezza93/activeerror/blob/main/.github/screenshot1.png)
 ![screenshot 2](https://github.com/npezza93/activeerror/blob/main/.github/screenshot2.png)
