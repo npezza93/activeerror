@@ -8,11 +8,11 @@ module ActiveError
       fault = Fault.new(klass: "NoMethodError")
       assert_equal "NoMethodError", fault.title
 
-      fault.controller = "faults"
-      assert_equal "NoMethodError in Faults", fault.title
+      fault.controller = "FaultsController"
+      assert_equal "NoMethodError in FaultsController", fault.title
 
       fault.action = "index"
-      assert_equal "NoMethodError in Faults#index", fault.title
+      assert_equal "NoMethodError in FaultsController#index", fault.title
     end
 
     test "#occurrences" do
