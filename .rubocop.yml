@@ -1601,7 +1601,7 @@ Lint/RaiseException:
   Enabled: true
 Lint/StructNewOverride:
   Description: 'Disallow overriding the `Struct` built-in methods via `Struct.new`.'
-  Enabled: true
+  Enabled: false
 Style/HashEachMethods:
   Description: 'Use Hash#each_key and Hash#each_value.'
   Enabled: true

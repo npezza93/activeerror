@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ActiveError
-  BacktraceLocation = Struct.new(:absolute_path, :base_label, :to_s, :label, # rubocop:disable Lint/StructNewOverride
+  BacktraceLocation = Struct.new(:absolute_path, :base_label, :to_s, :label,
                                  :lineno, :path) do
     def inspect = to_s
 
