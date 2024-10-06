@@ -50,7 +50,7 @@ module ActiveError
     def controller_display
       return unless controller?
 
-      " in #{controller.camelize}Controller"
+      " in #{controller.camelize}"
     end
 
     def action_display
