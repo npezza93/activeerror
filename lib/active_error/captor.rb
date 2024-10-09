@@ -10,14 +10,13 @@ module ActiveError
   end
 
   class Captor
-    def initialize(exception:, request:, capture_instance: true)
+    def initialize(exception:, request:)
       @exception = exception
       @request = request
-      @capture_instance = capture_instance
     end
 
     def capture
-      create_instance if capture_instance?
+      create_instance
       fault
     end
 
@@ -63,10 +62,6 @@ module ActiveError
                               location.to_s, location.label, location.lineno,
                               location.path)
       end
-    end
-
-    def capture_instance?
-      capture_instance
     end
 
     def create_instance
