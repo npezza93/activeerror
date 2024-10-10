@@ -9,8 +9,8 @@ module ActiveError
     end
 
     def show
-      instance = fault.instances.last ||
-        fault.instances.new(headers: {}, parameters: {})
+      instance = @fault.instances.last ||
+        @fault.instances.new(headers: {}, parameters: {})
 
       render html: Renderer.new(instance:).body
     end
