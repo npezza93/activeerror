@@ -9,7 +9,7 @@
       <div class="td chevron">▶</div>
       <div class="td">#<%= fault.id %></div>
       <div class="td location">
-        <%= link_to fault.title, fault_instance_path(fault, fault.instances.last) %>
+        <%= link_to fault.title, fault_path(fault) %>
 
         <% if fault.location.present? %>
           <span><%= fault.location %></span>
