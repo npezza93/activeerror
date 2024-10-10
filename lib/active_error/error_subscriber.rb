@@ -2,8 +2,8 @@
 
 module ActiveError
   class ErrorSubscriber
-    def report(exception, context:, **_opts)
-      return if !ActiveError.enabled? ||
+    def report(exception, context:, handled:, **_opts)
+      return if !ActiveError.enabled? || handled ||
         ActiveError.ignored_classes.include?(exception.class.to_s)
 
       Captor.new(exception:, request: context[:active_error_request]).capture
