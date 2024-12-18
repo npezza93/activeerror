@@ -74,7 +74,7 @@ module ActiveError
                 slice(*ActionDispatch::Request::ENV_METHODS, "HTTP_USER_AGENT")
 
       fault.instances.create(headers:, parameters: request&.filtered_parameters,
-                             url: request&.url)
+                             url: request&.url, session: request.session.to_h)
     end
 
     def controller

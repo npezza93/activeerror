@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_01_15_010453) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_18_160110) do
   create_table "active_error_faults", force: :cascade do |t|
     t.integer "cause_id"
     t.binary "backtrace", limit: 536870912
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_01_15_010453) do
     t.binary "parameters", limit: 536870912
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.binary "session", limit: 10485760
     t.index ["fault_id"], name: "index_active_error_instances_on_fault_id"
   end
 

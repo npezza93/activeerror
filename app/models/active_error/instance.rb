@@ -8,6 +8,7 @@ module ActiveError
 
     serialize :parameters, coder: JSON
     serialize :headers, coder: JSON
+    serialize :session, coder: JSON
 
     delegate :browser, :platform, :version, to: :user_agent
 
@@ -16,7 +17,9 @@ module ActiveError
     end
 
     def request
-      @request ||= ActionDispatch::Request.new(request_env)
+      @request ||= ActionDispatch::Request.new(request_env).tap do |req|
+        req.session = session
+      end
     end
 
     private
