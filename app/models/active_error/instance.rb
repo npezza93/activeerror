@@ -18,7 +18,7 @@ module ActiveError
 
     def request
       @request ||= ActionDispatch::Request.new(request_env).tap do |req|
-        req.session = session
+        req.session = session.presence || {}
       end
     end
 
