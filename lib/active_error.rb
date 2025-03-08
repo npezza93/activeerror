@@ -10,7 +10,7 @@ require "active_error/engine"
 require "active_error/version"
 
 module ActiveError
-  mattr_accessor :ignored, :enabled
+  mattr_accessor :ignored, :enabled, :connects_to
 
   IGNORE_DEFAULT = [
     "AbstractController::ActionNotFound",

@@ -58,6 +58,13 @@ ignore classes of errors.
 config.active_error.ignored = ["NoMethodError"]
 ```
 
+You can supply a hash of connection options to `connects_to` set the connection
+options for the base `ActiveError` model.
+
+```ruby
+config.active_error.connects_to = { database: { writing: :errors } }
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
